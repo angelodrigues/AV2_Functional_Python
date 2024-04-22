@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  database:
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: AV2
+    volumes:
+      - /Users/angelobarcelos/Documents/ACADEMIC/Unifor/Funcional/lista_av2/q3_angeloBarcelos/init-scripts:/docker-entrypoint-initdb.d

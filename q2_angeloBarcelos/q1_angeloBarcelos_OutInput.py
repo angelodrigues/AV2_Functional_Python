@@ -64,8 +64,6 @@ class SistemaBancario:
         Fechamentos.fechar_transacao())
     )
 
-
-
 #OPERAÇÕES#
 operacao_cash = lambda conta: (
     (lambda valor: (
