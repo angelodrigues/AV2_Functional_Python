@@ -132,16 +132,20 @@ reciboCredito = lambda conta, valor_solicitado, total_com_juros, valor_parcela: 
 )
 #RECIBOS#
 def main():
-    sistema = SistemaBancario()
+    sistema = lambda: SistemaBancario()
+    sistema = sistema()
     while True:
-        opcao = menu_principal()
+        opcao = lambda: menu_principal()
+        opcao = opcao()
         if opcao == 1:
-            numero_conta = int(input("\nInforme o número da conta: "))
-            senha = input("Informe a senha: ")
-            conta = sistema.entrar(numero_conta, senha)
+            numero_conta = lambda: int(input("\nInforme o número da conta: "))
+            senha = lambda: input("Informe a senha: ")
+            conta = lambda: sistema.entrar(numero_conta(), senha())
+            conta = conta()
             if conta:
                 while True:
-                    opcao_usuario = menu_usuario()
+                    opcao_usuario = lambda: menu_usuario()
+                    opcao_usuario = opcao_usuario()
                     if opcao_usuario == 1:
                         operacao_cash(conta)
                     elif opcao_usuario == 2:
@@ -151,9 +155,9 @@ def main():
                     else:
                         print("Opção inválida.")
         elif opcao == 2:
-            nome = input("\nInforme o nome: ")
-            senha = input("Informe a senha: ")
-            sistema.criar_conta(nome, senha)
+            nome = lambda: input("\nInforme o nome: ")
+            senha = lambda: input("Informe a senha: ")
+            sistema.criar_conta(nome(), senha())
         elif opcao == 3:
             print("\nSaindo do sistema.")
             exit()
