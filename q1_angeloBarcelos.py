@@ -131,6 +131,8 @@ reciboCredito = lambda conta, valor_solicitado, total_com_juros, valor_parcela: 
     completar_transacao(conta)
 )
 #RECIBOS#
+
+#MOTOR#
 def main():
     sistema = lambda: SistemaBancario()
     sistema = sistema()
@@ -163,6 +165,6 @@ def main():
             exit()
         else:
             print("Opção inválida.")
-
+#MOTOR#
 if __name__ == "__main__":
     main()
