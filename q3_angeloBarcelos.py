@@ -37,10 +37,10 @@ try:
         "password": password
     }
 
-    db = lambda: Database(conn_params("localhost", "AV2", "root", "123"))
+    db = lambda: Database(conn_params("localhost", "AV2", "root", "root"))
     db = db()
 
-    db.insert("USERS", ["id", "name", "country", "id_console"], [1, "Angelo Rodrigues", "Brasil", 2])
+    db.insert("USERS", ["id", "name", "country", "id_console"], [4, "Angelo Rodrigues", "Brasil", 4])
     print(db.get_all("USERS"))
     print(db.get_by_id("USERS", 1))
 
