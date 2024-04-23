@@ -11,15 +11,12 @@ class Database:
     disconnect = lambda self: self.conn.close() if self.conn else None
 
     def execute(self, query, args=None):
-        try:
-            if not self.conn:
-                self.connect()
-            cursor = self.conn.cursor()
+            connect_if_needed = lambda: self.connect() if not self.conn else None
+            connect_if_needed()
+            cursor = lambda: self.conn.cursor()
+            cursor = cursor()
             cursor.execute(query, args)
             return cursor
-        except psycopg2.Error as e:
-            print(f"Erro ao executar a consulta: {e}")
-            raise
 
     insert = lambda self, table, fields, values: (lambda query, values: (self.execute(query, values), self.conn.commit()))(f"INSERT INTO {table} ({', '.join(fields)}) VALUES ({', '.join(['%s'] * len(values))})", values)
     get_all = lambda self, table: (lambda query: self.execute(query).fetchall())(f"SELECT * FROM {table}")
